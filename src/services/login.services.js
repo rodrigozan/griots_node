@@ -1,9 +1,9 @@
 import User from '../models/user.models';
 
 const loginService = {
-  getUserByUsername: async (data) => {
+  getUserByUsername: async (username) => {
     try {
-      const user = await User.findOne({ data });
+      const user = await User.findOne({ username });
       return user;
     } catch (error) {
       console.error('Erro ao obter usuário por nome de usuário:', error);
