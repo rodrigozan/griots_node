@@ -5,10 +5,14 @@ import cors from 'cors';
 import connectDatabase from './config/database';
 import router from './src/routes'
 
-dotenv.config();
+if (process.env.NODE_ENV === 'production') {
+  dotenv.config({ path: '.env.production' });
+} else if (process.env.NODE_ENV === 'development') { 
+  dotenv.config({ path: '.env.development' });
+}
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 
 connectDatabase();
 
