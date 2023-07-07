@@ -1,9 +1,7 @@
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-  },
+  name: String,
   email: {
     type: String,
     required: true,
@@ -18,34 +16,20 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  birth: {
-    type: Date,
-  },
+  birth: Date,
   gender: {
     type: String,
     enum: ['Masculino', 'Feminino', 'Outro'],
   },
-  zipCode: {
-    type: String,
-  },
+  zipCode: String,
   street: {
     type: String,
   },
-  number: {
-    type: String,
-  },
-  district: {
-    type: String,
-  },
-  city: {
-    type: String,
-  },
-  state: {
-    type: String,
-  },
-  country: {
-    type: String,
-  },
+  number: Number,
+  district: String,
+  city: String,
+  state: String,
+  country: String,
   role: {
     type: String,
     enum: ['writer', 'system_admin', 'reader', 'editor', 'publisher'],
