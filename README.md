@@ -1,6 +1,6 @@
-# Griots Nuxt API
+# Griots Node API
 
-Welcome to **Griots Nuxt API**, the web app for Griots Multiplatform for writers
+Welcome to **Griots Node API**, the web app for Griots Multiplatform for writers
 
 ## Resources
 
