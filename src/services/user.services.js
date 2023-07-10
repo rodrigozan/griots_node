@@ -23,6 +23,19 @@ const userService = {
       throw new Error('Erro interno do servidor');
     }
   },
+  getUserUsername: async (username) => {
+    try {
+      const user = await User.findOne({ username });
+      if (user) {
+        return user;
+      } else {
+        throw new Error('Usuário não encontrado');
+      }
+    } catch (error) {
+      console.error('Erro ao obter usuário por ID:', error);
+      throw new Error('Erro interno do servidor');
+    }
+  },
   createUser: async (data) => {
     try {
       const new_user = new User(data);
