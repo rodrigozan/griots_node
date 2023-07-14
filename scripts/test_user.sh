@@ -11,4 +11,4 @@ curl -X POST -H "Content-Type: application/json" -d '{
   "email": "'"$EMAIL"'"
 }' $API_URL/users
 
-curl $API_URL/users
+curl $API_URL/Susers

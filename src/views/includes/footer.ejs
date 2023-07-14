@@ -1,0 +1,29 @@
+<footer>
+  <p>&copy; 2023 Griots. Todos os direitos reservados.</p>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script>
+
+  const query_string = window.location.search;
+  const params = new URLSearchParams(query_string);
+
+  const token = params.get('token');
+  const username = params.get('username');
+
+  localStorage.setItem("token", token)
+  localStorage.setItem("username", username)
+
+  let welcome = document.getElementById("welcome")
+
+  if (localStorage.getItem("token") && localStorage.getItem("token") != "") {
+    console.log("hey deu certo?")
+    welcome.innerHTML = `Seja Bem-vindo(a) ${localStorage.getItem("username")}`
+  }
+</script>
+<script>
+
+</script>
+</body>
+
+</html>

@@ -35,6 +35,14 @@ const userSchema = new mongoose.Schema({
     enum: ['writer', 'system_admin', 'reader', 'editor', 'publisher'],
     default: 'writer',
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: [Date],
+    default: [],
+  },
 });
 
 const User = mongoose.model('User', userSchema);

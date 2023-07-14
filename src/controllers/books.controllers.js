@@ -30,7 +30,7 @@ const bookController = {
       const bookData = req.body;
       console.log("Book data controller",bookData)
       const book = await bookService.createBook(bookData);
-      res.status(201).json(book);
+      res.status(201).json({data:book});
     } catch (error) {
       console.error('Erro ao criar o livro:', error);
       res.status(500).json({ error: 'Erro interno do servidor' });

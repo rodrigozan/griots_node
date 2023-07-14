@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 const bookSchema = new mongoose.Schema({
     title: {
@@ -22,12 +22,18 @@ const bookSchema = new mongoose.Schema({
         ref: 'User',
         required: true,
     },
+    coAuthors: [mongoose.Schema.Types.ObjectId],
     cover: {
         type: String,
     },
     description: {
         type: String,
     },
+    genres: [String],
+    subgenres: [String],
+    description: String,
+    tags: [String],
+    isbn: Number,
     chapters: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Chapter'
@@ -36,8 +42,17 @@ const bookSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Feedback'
     },
-});
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
+    updatedAt: {
+        type: [Date],
+        default: [],
+    },
 
-const Book = mongoose.model('Book', bookSchema);
+})
+
+const Book = mongoose.model('Book', bookSchema)
 
 export default Book

@@ -2,7 +2,7 @@ import express from 'express'
 import userController from './controllers/user.controllers'
 import loginController from './controllers/login.controllers'
 import passwordTokenController from './controllers/passwordToken.controllers'
-import authMiddleware from '../middlewares/authMiddleware'
+import authMiddleware from '../middlewares/authMiddleware' 
 
 import bookController from './controllers/books.controllers';
 import feedbackController from './controllers/feedbacks.controllers';
@@ -30,7 +30,7 @@ router.put('/change-password/:token', authMiddleware, passwordTokenController.ch
 
 router.get('/books', authMiddleware, bookController.getAllBooks); // ok
 router.get('/books/:id', authMiddleware, bookController.getBookById); // ok
-router.post('/books', authMiddleware, bookController.createBook); // ok
+router.post('/books', bookController.createBook); // ok  
 router.put('/books/:id', authMiddleware, bookController.updateBook); // ok
 router.delete('/books/:id', authMiddleware, bookController.deleteBook); // ok
 

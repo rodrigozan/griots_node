@@ -7,13 +7,13 @@ dotenv.config()
 import loginService from '../services/login.services';
 
 const loginController = {
-  login: async (req, res) => {
+  login: async (req, res) => {  
     try {
-      if(req.body == "" && req.body == null) {
-        return res.status(404).json({ error: 'Requisição vazia' });
+      if (!req.body || Object.keys(req.body).length === 0) {
+        return res.status(400).json({ error: 'Requisição vazia' });
       }
 
-      const { username, password } = req.body
+      const { username, password, ejs } = req.body
       
       const user = await loginService.getUserByUsername(username);
 
@@ -31,7 +31,11 @@ const loginController = {
         expiresIn: '30d',
       });
 
-      res.status(201).json({ message: 'Login bem-sucedido', token });
+      const data = {
+        message: 'Login bem-sucedido', token
+      }
+
+      res.status(201).json({data: data});
     } catch (error) {
       console.error('Erro durante o login:', error);
       res.status(500).json({ error: 'Erro interno do servidor' });
