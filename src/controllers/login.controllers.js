@@ -14,6 +14,8 @@ const loginController = {
       }
 
       const { username, password, ejs } = req.body
+
+      console.log("Requisição", req.body);
       
       const user = await loginService.getUserByUsername(username);
 
