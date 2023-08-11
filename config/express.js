@@ -19,5 +19,6 @@ app.set('views', path.join(__dirname, '../src/views'));
 
 app.use('/api', router);
 app.use('/local', local)
+app.use('/', (req, res) => {res.json({message: 'Rota Index'})})
 
 export default app

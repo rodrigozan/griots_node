@@ -29,6 +29,22 @@ const bookService = {
     }
   },
   
+  updateBookCover: async (bookId, coverPath) => {
+    try {
+      const book = await Book.findById(bookId);
+
+      if (!book) {
+        throw new Error('Livro não encontrado');
+      }
+
+      book.cover = coverPath; 
+      await book.save();
+
+      return book;
+    } catch (error) {
+      throw error;
+    }
+  },
 
   updateBook: async (id, data) => {
     try {

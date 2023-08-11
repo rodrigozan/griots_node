@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const bookSchema = new mongoose.Schema({
+const bookSchema = new mongoose.Schema({   
     title: {
         type: String,
         required: true,
@@ -10,7 +10,7 @@ const bookSchema = new mongoose.Schema({
         ref: 'Serie',
     },
     worldbuilding: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,  
         ref: 'Worldbuilding',
     },
     plot: {
@@ -29,7 +29,7 @@ const bookSchema = new mongoose.Schema({
     description: {
         type: String,
     },
-    genres: [String],
+    genre: String,
     subgenres: [String],
     description: String,
     tags: [String],

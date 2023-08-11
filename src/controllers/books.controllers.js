@@ -1,3 +1,6 @@
+import path from 'path'
+import fs from 'fs'
+
 import bookService from '../services/books.services';
 
 const bookController = {
@@ -28,11 +31,30 @@ const bookController = {
   createBook: async (req, res) => {
     try {
       const bookData = req.body;
-      console.log("Book data controller",bookData)
       const book = await bookService.createBook(bookData);
-      res.status(201).json({data:book});
+
+      res.status(201).json({ data: book, message: "salve rapaziada" });
     } catch (error) {
       console.error('Erro ao criar o livro:', error);
+      res.status(500).json({ error: 'Erro interno do servidor' });
+      res.end()
+    }
+  },
+
+  updateCoverBook: async (req, res) => {
+    try {
+      const bookId = req.params.bookId;
+      const imagePath = req.file.path;
+
+      await bookService.updateBookCover(bookId, imagePath)
+
+      const imageFileName = path.basename(imagePath);
+      const newImagePath = path.join(__dirname, './assets/image', imageFileName);
+      await fs.rename(imagePath, newImagePath);
+
+      res.status(201).json({ data: book, message: "salve rapaziada" });
+    } catch (error) {
+      console.error('Erro ao atualizar a capa do livro:', error);
       res.status(500).json({ error: 'Erro interno do servidor' });
     }
   },
