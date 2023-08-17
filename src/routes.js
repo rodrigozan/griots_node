@@ -50,11 +50,11 @@ router.post('/books/:id/chapters', authMiddleware, chapterController.createChapt
 router.put('/books/:id/chapters/:id', authMiddleware, chapterController.updateChapter); // ok
 router.delete('/books/:id/chapters/:id', authMiddleware, chapterController.deleteChapter);
  // ok
-router.get('/books/:id/comments', authMiddleware, commentController.getAllComments); // ok
-router.get('/books/:id/comments/:id', authMiddleware, commentController.getCommentById); // ok
-router.post('/books/:id/comments', authMiddleware, commentController.createComment); // ok
-router.put('/books/:id/comments/:id', authMiddleware, commentController.updateComment); // ok
-router.delete('/books/:id/comments/:id', authMiddleware, commentController.deleteComment); // ok
+router.get('/books/:id/chapters/:id/comments', authMiddleware, commentController.getAllComments); // ok
+router.get('/books/:id/chapters/:id/comments/:id', authMiddleware, commentController.getCommentById); // ok
+router.post('/books/:id/chapters/:id/comments', authMiddleware, commentController.createComment); // ok
+router.put('/books/:id/chapters/:id/comments/:id', authMiddleware, commentController.updateComment); // ok
+router.delete('/books/:id/chapters/:id/comments/:id', authMiddleware, commentController.deleteComment); // ok
 
 router.get('/plots', authMiddleware, plotController.getAllPlots);
 router.get('/plots/:id', authMiddleware, plotController.getPlotById)

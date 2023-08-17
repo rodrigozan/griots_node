@@ -14,6 +14,10 @@ const commentSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Book',
     },
+    chapter: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Chapter',
+    },
 });
 
 const Comment = mongoose.model('Comment', commentSchema);
