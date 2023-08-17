@@ -37,7 +37,7 @@ const loginController = {
         message: 'Login bem-sucedido', token
       }
 
-      res.status(201).json({data: data});
+      res.status(201).json(data);
     } catch (error) {
       console.error('Erro durante o login:', error);
       res.status(500).json({ error: 'Erro interno do servidor' });

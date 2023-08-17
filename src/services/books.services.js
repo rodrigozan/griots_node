@@ -33,9 +33,13 @@ const bookService = {
     try {
       const book = await Book.findById(bookId);
 
+      console.log("Book no sevice", book)
+
       if (!book) {
-        throw new Error('Livro não encontrado');
+        console.log('Livro não encontrado');
       }
+
+      console.log(coverPath)
 
       book.cover = coverPath; 
       await book.save();

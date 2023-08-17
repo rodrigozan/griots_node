@@ -33,31 +33,31 @@ router.put('/change-password/:token', authMiddleware, passwordTokenController.ch
 
 router.get('/books', bookController.getAllBooks); // ok
 router.get('/books/:id', authMiddleware, bookController.getBookById); // ok
-router.post('/books', bookController.createBook); // ok  
-router.post('/books/:id/upload-image', upload.single('image'), bookController.updateCoverBook);    
+router.post('/books', authMiddleware, bookController.createBook); // ok  
+router.post('/books/:id/upload-image', authMiddleware, upload.single('image'), bookController.updateCoverBook);    
 router.put('/books/:id', authMiddleware, bookController.updateBook); // ok
-router.delete('/books/:id', authMiddleware, bookController.deleteBook); // ok
+router.delete('/books/:id', authMiddleware, bookController.deleteBook);
 
-router.get('/feedbacks', authMiddleware, feedbackController.getAllFeedbacks); // ok
-router.get('/feedbacks/:id', authMiddleware, feedbackController.getFeedbackById); // ok
-router.post('/feedbacks', authMiddleware, feedbackController.createFeedback); // ok
-router.put('/feedbacks/:id', authMiddleware, feedbackController.updateFeedback); // ok
-router.delete('/feedbacks/:id', authMiddleware, feedbackController.deleteFeedback); // ok
+router.get('/books/:id/feedbacks', authMiddleware, feedbackController.getAllFeedbacks); // ok
+router.get('/books/:id/feedbacks/:id', authMiddleware, feedbackController.getFeedbackById); // ok
+router.post('/books/:id/feedbacks', authMiddleware, feedbackController.createFeedback); // ok
+router.put('/books/:id/feedbacks/:id', authMiddleware, feedbackController.updateFeedback); // ok
+router.delete('/books/:id/feedbacks/:id', authMiddleware, feedbackController.deleteFeedback); // ok
 
-router.get('/chapters', authMiddleware, chapterController.getAllChapters); // ok
-router.get('/chapters/:id', authMiddleware, chapterController.getChapterById); // ok
-router.post('/chapters', authMiddleware, chapterController.createChapter); // ok
-router.put('/chapters/:id', authMiddleware, chapterController.updateChapter); // ok
-router.delete('/chapters/:id', authMiddleware, chapterController.deleteChapter);
+router.get('/books/:id/chapters', chapterController.getAllChapters); // ok
+router.get('/books/:id/chapters/:id', chapterController.getChapterById); // ok
+router.post('/books/:id/chapters', authMiddleware, chapterController.createChapter); // ok
+router.put('/books/:id/chapters/:id', authMiddleware, chapterController.updateChapter); // ok
+router.delete('/books/:id/chapters/:id', authMiddleware, chapterController.deleteChapter);
  // ok
-router.get('/comments', authMiddleware, commentController.getAllComments); // ok
-router.get('/comments/:id', authMiddleware, commentController.getCommentById); // ok
-router.post('/comments', authMiddleware, commentController.createComment); // ok
-router.put('/comments/:id', authMiddleware, commentController.updateComment); // ok
-router.delete('/comments/:id', authMiddleware, commentController.deleteComment); // ok
+router.get('/books/:id/comments', authMiddleware, commentController.getAllComments); // ok
+router.get('/books/:id/comments/:id', authMiddleware, commentController.getCommentById); // ok
+router.post('/books/:id/comments', authMiddleware, commentController.createComment); // ok
+router.put('/books/:id/comments/:id', authMiddleware, commentController.updateComment); // ok
+router.delete('/books/:id/comments/:id', authMiddleware, commentController.deleteComment); // ok
 
 router.get('/plots', authMiddleware, plotController.getAllPlots);
-router.get('/plots/:id', authMiddleware, plotController.getPlotById);
+router.get('/plots/:id', authMiddleware, plotController.getPlotById)
 router.post('/plots', authMiddleware, plotController.createPlot);
 router.put('/plots/:id', authMiddleware, plotController.updatePlot);
 router.delete('/plots/:id', authMiddleware, plotController.deletePlot);

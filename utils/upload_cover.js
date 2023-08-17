@@ -4,7 +4,7 @@ import path from 'path'
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const bookId = req.params.bookId;
+    const bookId = req.params.id;
     const uploadPath = path.join(__dirname, `../assets/image/${bookId}`);
     
     fs.mkdir(uploadPath, { recursive: true }, (err) => {
