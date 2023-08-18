@@ -63,8 +63,10 @@ const userController = {
         return res.status(400).json({ error: 'ID de usuário inválido' });
       }
 
+      console.log("Body", req.body)
+
       const userData = { name, email, birth, gender, zipCode, street, number, district, city, state, country };
-      const updatedUser = await service.updateUser(id, userData);
+      const updatedUser = await service.updateUser(id, req.body);
 
       res.json(updatedUser);
     } catch (error) {

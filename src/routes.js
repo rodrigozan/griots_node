@@ -21,7 +21,7 @@ const router = express.Router()
 router.get('/users', userController.getAllUsers) // ok
 router.get('/users/:id', userController.getUserById) // ok
 router.post('/users', userController.createUser) // ok
-router.put('/users/:id', authMiddleware, userController.updateUser) // ok
+router.put('/users/:id', userController.updateUser) // ok
 router.delete('/users/:id', authMiddleware, userController.deleteUser) // ok
 
 router.post('/login', loginController.login) // ok
