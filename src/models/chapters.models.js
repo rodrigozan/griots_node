@@ -1,6 +1,11 @@
 import mongoose from 'mongoose';
 
 const chapterSchema = new mongoose.Schema({
+    book: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Book',
+        required: true,
+    },
     title: {
         type: String,
         required: true,
@@ -11,10 +16,9 @@ const chapterSchema = new mongoose.Schema({
     },
     slug: {
         type: String,
-        required: true,   
     },
 });
 
-//const Chapter = mongoose.model('Chapter', chapterSchema);
+const Chapter = mongoose.model('Chapter', chapterSchema);
 
-export default chapterSchema
+export default Chapter

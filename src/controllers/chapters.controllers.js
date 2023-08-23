@@ -1,64 +1,70 @@
 import chapterService from '../services/chapters.services';
 
-const chapterController = {
-  getAllChapters: async (req, res) => {
+class ChapterController {
+  async createChapter(req, res) {
     try {
-      const chapters = await chapterService.getAllChapters(req.params.id);
-      res.json(chapters);
-    } catch (error) {
-      console.error('Erro ao buscar os capítulos:', error);
-      res.status(500).json({ error: 'Erro interno do servidor' });
-    }
-  },
-
-  getChapterById: async (req, res) => {
-    try {
-      const chapter = await chapterService.getChapterById(req.params.id);
-      if (!chapter) {
-        return res.status(404).json({ error: 'Capítulo não encontrado' });
-      }
-      res.json(chapter);
-    } catch (error) {
-      console.error('Erro ao buscar o capítulo:', error);
-      res.status(500).json({ error: 'Erro interno do servidor' });
-    }
-  },
-
-  createChapter: async (req, res) => {
-    try {
-      const chapter = await chapterService.createChapter(req.params.id, req.body);
+      const chapterData = req.body;
+      console.log("Data", req.body)
+      const chapter = await chapterService.createChapter(chapterData);
       res.status(201).json(chapter);
     } catch (error) {
-      console.error('Erro ao criar o capítulo:', error);
-      res.status(500).json({ error: 'Erro interno do servidor' });
+      console.log("Não deu para cadastrar o capítulo no controller: ", error.message)
+      res.status(404).json({ error: `Não deu para cadastrar o capítulo no controller: ${error.message}` });
     }
-  },
+  }
 
-  updateChapter: async (req, res) => {
+  async getChapterById(req, res) {
     try {
-      const { id } = req.params;
+      const chapterId = req.params.id;
+      const chapter = await chapterService.getChapterById(chapterId);
+      if (chapter) {
+        res.json(chapter);
+      } else {
+        res.status(404).json({ error: 'Chapter not found' });
+      }
+    } catch (error) {
+      res.status(500).json({ error: 'Could not retrieve chapter' });
+    }
+  }
+
+  async getAllChapters(req, res) {
+    try {
+      const chapters = await chapterService.getAllChapters();
+      res.status(201).json(chapters);
+    } catch (error) {
+      res.status(500).json({ error: 'Could not retrieve chapters' });
+    }
+  }
+
+  async updateChapter(req, res) {
+    try {
+      const chapterId = req.params.id;
       const chapterData = req.body;
-      const updatedChapter = await chapterService.updateChapter(id, chapterData);
-      res.json(updatedChapter);
+      const updatedChapter = await chapterService.updateChapter(chapterId, chapterData);
+      if (updatedChapter) {
+        res.json(updatedChapter);
+      } else {
+        res.status(404).json({ error: 'Chapter not found' });
+      }
     } catch (error) {
-      console.error('Erro ao atualizar o capítulo:', error);
-      res.status(500).json({ error: 'Erro interno do servidor' });
+      res.status(500).json({ error: 'Could not update chapter' });
     }
-  },
+  }
 
-  deleteChapter: async (req, res) => {
+  async deleteChapter(req, res) {
     try {
-      const { id } = req.params;
-      console.log(req.body);
-      console.log('---')
-      console.log(req.params);
-      // const deletedChapter = await chapterService.deleteChapter(`${id}`);
-      // res.json(deletedChapter);
+      const chapterId = req.params.id;
+      const deletedChapter = await chapterService.deleteChapter(chapterId);
+      if (deletedChapter) {
+        res.json(deletedChapter);
+      } else {
+        res.status(404).json({ error: 'Chapter not found' });
+      }
     } catch (error) {
-      console.error('Erro ao excluir o capítulo:', error);
-      res.status(500).json({ error: 'Erro interno do servidor' });
+      res.status(500).json({ error: 'Could not delete chapter' });
     }
-  },
-};
+  }
+}
 
-export default chapterController;
+export default new ChapterController();
+

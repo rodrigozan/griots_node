@@ -1,89 +1,55 @@
-import Book from '../models/books.models';
+import Chapter from '../models/chapters.models';
 
-const chapterService = {
-  getAllChapters: async (bookId) => {
+class ChapterService {
+  async createChapter(data) {
     try {
-      const book = await Book.findById(bookId);
-      return book.chapters;
+      const new_chapter = new Chapter(data);
+      console.log("chegou aqui")
+      const chapter = await new_chapter.save();
+      return chapter;
     } catch (error) {
-      throw error;
+      console.log("Não deu para cadastrar o capítulo no controller: ", error.message)
     }
-  },
+  }
 
-  getChapterById: async (bookId) => {
+
+
+  async getChapterById(id) {
     try {
-      const book = await Book.findById(bookId);
-
-      const chapter = book.chapters._id;
-
+      const chapter = await Chapter.findById(id).populate('book');
       return chapter;
     } catch (error) {
       throw error;
     }
-  },
+  }
 
-  createChapter: async (bookId, chapterData) => {
+  async getAllChapters() {
     try {
-      const book = await Book.findById(bookId);
-      console.log("Eita lelê, olhao book ai: ", book)
-
-      const newChapter = { ...chapterData };
-      book.chapters.push(newChapter);      
-      return await book.save();;
+      const chapters = await Chapter.find().populate('book');
+      return chapters;
     } catch (error) {
       throw error;
     }
-  },
+  }
 
-  updateChapter: async (bookId, chapterId, chapterData) => {
-    // try {
-    //   const chapter = await Chapter.findByIdAndUpdate(id, data, { new: true });
-    //   return chapter;
-    // } catch (error) {
-    //   console.error('Erro ao atualizar o capítulo', error);
-    // }
+  async updateChapter(id, data) {
     try {
-      const book = await Book.findById(bookId);
-      if (!book) {
-        throw new Error('Book not found');
-      }
-
-      const chapter = book.chapters.id(chapterId);
-      if (!chapter) {
-        throw new Error('Chapter not found');
-      }
-
-      chapter.set(chapterData);
-      await book.save();
-
+      const chapter = await Chapter.findByIdAndUpdate(id, data, { new: true });
       return chapter;
     } catch (error) {
       throw error;
     }
-  },
+  }
 
-  deleteChapter: async (bookId, chapterId) => {
+  async deleteChapter(id) {
     try {
-      const book= await Book.findById(bookId)
-       .then(success => {
-          console.log(success)
-       })
-       .catch(err => console.error('Erro ao excluir o capítulo:', err.message, bookId))
-      
-
-      const chapter = book.chapters.id(chapterId);
-      if (!chapter) {
-        throw new Error('Chapter not found');
-      }
-
-      chapter.remove();
-      await book.save();
-
+      const chapter = await Chapter.findByIdAndDelete(id);
       return chapter;
     } catch (error) {
-      console.error('Erro ao excluir o capítulo:', error.message);
+      throw error;
     }
-  },
-};
+  }
+}
 
-export default chapterService;
+export default new ChapterService();
+

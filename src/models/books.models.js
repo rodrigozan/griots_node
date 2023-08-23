@@ -40,7 +40,6 @@ const bookSchema = new mongoose.Schema({
     description: String,
     tags: [String],
     isbn: Number,
-    chapters: [chaptersModels],
     feedbacks: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Feedback'
