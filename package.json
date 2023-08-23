@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=production babel-node server.js",
     "dev": "NODE_ENV=development nodemon --exec babel-node server.js",
-    "test_user": "bash scripts/test_user.sh"
+    "test_user": "bash scripts/test_user.sh",
+    "add": "git add .",
+    "commit": "git commit -m 'A commit...'",
+    "push": "npm run add && npm run commit && git push origin bootstrap_layout"
   },
   "keywords": [],
   "author": "",
