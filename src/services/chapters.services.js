@@ -12,8 +12,6 @@ class ChapterService {
     }
   }
 
-
-
   async getChapterById(id) {
     try {
       const chapter = await Chapter.findById(id).populate('book');
