@@ -10,7 +10,7 @@
     "test_user": "bash scripts/test_user.sh",
     "add": "git add .",
     "commit": "git commit -m 'A commit...'",
-    "push": "npm run add && npm run commit && git push origin bootstrap_layout"
+    "push": "npm run add && npm run commit && git push origin master"
   },
   "keywords": [],
   "author": "",
