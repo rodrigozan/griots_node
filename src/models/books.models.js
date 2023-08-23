@@ -1,5 +1,7 @@
 import mongoose from 'mongoose'
 
+import chaptersModels from './chapters.models'
+
 const bookSchema = new mongoose.Schema({   
     title: {
         type: String,
@@ -22,7 +24,11 @@ const bookSchema = new mongoose.Schema({
         ref: 'User',
         required: true,
     },
-    coAuthors: [mongoose.Schema.Types.ObjectId],
+    coAuthors: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    },
     cover: {
         type: String,
     },
@@ -34,10 +40,7 @@ const bookSchema = new mongoose.Schema({
     description: String,
     tags: [String],
     isbn: Number,
-    chapters: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Chapter'
-    },
+    chapters: [chaptersModels],
     feedbacks: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Feedback'

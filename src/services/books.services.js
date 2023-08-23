@@ -52,7 +52,9 @@ const bookService = {
 
   updateBook: async (id, data) => {
     try {
+      console.log("entrou... antes do update", data)
       const book = await Book.findByIdAndUpdate(id, data, { new: true });
+      console.log("bem, isso ja ta depois do update", book)
       return book;
     } catch (error) {
       console.error('Erro ao atualizar o livro', error);

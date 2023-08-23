@@ -95,13 +95,14 @@ const bookController = {
 
   updateBook: async (req, res) => {
     try {
-      const { id } = req.params;
+      console.log(req.params.id);
       const bookData = req.body;
-      const data = await bookService.updateBook(id, bookData);
+      console.log("bookData", bookData)
+      const data = await bookService.updateBook(req.params.id, bookData);
       res.status(201).json(data);
     } catch (error) {
       console.error('Erro ao atualizar o livro:', error);
-      res.status(500).json({ error: 'Erro interno do servidor' });
+      res.status(500).json({ error: 'Erro interno do servidor' })   
     }
   },
 
