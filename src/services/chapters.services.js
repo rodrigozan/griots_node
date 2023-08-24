@@ -14,28 +14,35 @@ class ChapterService {
 
   async getChapterById(id) {
     try {
-      const chapter = await Chapter.findById(id).populate('book');
+      const chapter = await Chapter.findById(id)
       return chapter;
     } catch (error) {
-      throw error;
+      console.log(error.message)
+      throw error.message
     }
   }
 
-  async getAllChapters() {
+  async getAllChapters(bookId) {
     try {
-      const chapters = await Chapter.find().populate('book');
+      const chapters = await Chapter.find({ book: bookId })
       return chapters;
     } catch (error) {
-      throw error;
+      console.log(error.message)
+      throw error.message
     }
   }
 
   async updateChapter(id, data) {
+    console.log("-----")
+    console.log("chapterId no service", id)
+    console.log("Data", data)
     try {
       const chapter = await Chapter.findByIdAndUpdate(id, data, { new: true });
+      console.log("Return....", chapter)
       return chapter;
     } catch (error) {
-      throw error;
+      console.log(error.message)      
+      throw error.message
     }
   }
 
@@ -44,7 +51,8 @@ class ChapterService {
       const chapter = await Chapter.findByIdAndDelete(id);
       return chapter;
     } catch (error) {
-      throw error;
+      console.log(error.message)
+      throw error.message
     }
   }
 }
