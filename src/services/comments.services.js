@@ -1,9 +1,29 @@
 import Comment from '../models/comments.models';
 
 const commentService = {
-  getAllComments: async () => {
+  getAllCommentsByBook: async (bookId) => {
     try {
-      const comments = await Comment.find();
+      const comments = await Comment.find({book: bookId});
+      if(comments == []) console.log('não há comentários') 
+      return comments;
+    } catch (error) {
+      console.error('Erro ao buscar os comentários', error.message);
+    }
+  },
+
+  getAllCommentsByChapter: async (chapterId) => {
+    try {
+      const comments = await Comment.find({chapter: chapterId});
+      console.log('comments no service', comments)
+      return comments;
+    } catch (error) {
+      console.error('Erro ao buscar os comentários');
+    }
+  },
+
+  getAllCommentsByAuhor: async (authorId) => {
+    try {
+      const comments = await Comment.find({author: authorId});
       return comments;
     } catch (error) {
       console.error('Erro ao buscar os comentários');
@@ -25,7 +45,7 @@ const commentService = {
       const comment = await new_comment.save();
       return comment;
     } catch (error) {
-      console.error("Kamen Raiiiidaaaa Decade", error)
+      console.error("Kamen Raiiiidaaaa Decade", error.message)
     }
   },
 

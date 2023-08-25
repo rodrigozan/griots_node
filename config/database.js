@@ -14,11 +14,11 @@ if (process.env.NODE_ENV === 'production') {
       process.exit(1)
     }
   }
-} else if (process.env.NODE_ENV === 'development') { 
-  dotenv.config({ path: '.env.development' }) 
+} else if (process.env.NODE_ENV === 'development') {    
+  dotenv.config({ path: '.env.development' })   
   connectDatabase = async () => { 
     try {
-      await mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+      await mongoose.connect(process.env.DATABASE_URL_DEV, { useNewUrlParser: true, useUnifiedTopology: true })
       console.log('Database connected! By the Power of Grayskull!!!I have the power!')
     } catch (error) {
       console.error('Oh No, Zordon! Error in Morphin Time:', error)

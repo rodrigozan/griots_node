@@ -41,9 +41,9 @@ const userController = {
   createUser: async (req, res) => {
     try {
       const { email, password, username, role } = req.body;
-      if (username === "" || username === null) {
-        username = email.split('@')[0];
-      }
+      // if (username === "" || username === null) {
+      //   username = email.split('@')[0];
+      // }
       const hashedPassword = await bcrypt.hash(password, 10);
       const userData = { email, username, password: hashedPassword, role };
       const user = await service.createUser(userData);
@@ -51,7 +51,7 @@ const userController = {
     } catch (error) {
       console.error('Erro ao criar usuário:', error);
       res.status(500).json({ error: 'Erro interno do servidor' });
-    }
+    } 
   },
 
   updateUser: async (req, res) => {
