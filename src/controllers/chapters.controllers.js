@@ -28,7 +28,7 @@ class ChapterController {
 
   async getAllChapters(req, res) {
     try {
-      const bookId = req.params.id  
+      const bookId = req.params.id
       const chapters = await chapterService.getAllChapters(bookId)
       res.status(201).json(chapters)
     } catch (error) {

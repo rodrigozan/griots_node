@@ -27,7 +27,6 @@ const bookSchema = new mongoose.Schema({
     coAuthors: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true,
     },
     cover: {
         type: String,

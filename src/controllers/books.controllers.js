@@ -65,7 +65,6 @@ const bookController = {
     try {
       const bookId = req.params.id;
       const imagePath = req.file.path;
-
       const image = imagePath.replace('/app', '')
   
       console.log({"id do livro": bookId, "imagem path": image});

@@ -16,6 +16,8 @@ import plotController from './controllers/planning/plot.controllers'
 import worldbuildingController from './controllers/planning/worldbuilding.controllers'
 import characterController from './controllers/planning/character.controllers' 
 
+import notificationsControllers from './controllers/notifications.controllers'
+
 const router = express.Router()
 
 router.get('/users', userController.getAllUsers) // ok
@@ -77,4 +79,7 @@ router.post('/characters', authMiddleware, characterController.createCharacter)
 router.put('/characters/:id', authMiddleware, characterController.updateCharacter)
 router.delete('/characters/:id', authMiddleware, characterController.deleteCharacter)
 
-export default router
+// Notifications
+router.post('/notifications', authMiddleware, notificationsControllers.createNotification)
+
+export default router  
