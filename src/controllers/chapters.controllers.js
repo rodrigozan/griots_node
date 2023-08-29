@@ -19,7 +19,7 @@ class ChapterController {
       if (chapter) {
         res.json(chapter)
       } else {
-        res.status(404).json({ error: 'Chapter not found' })
+        res.status(404).json({ error: 'Chapter not found' }) 
       }
     } catch (error) {
       res.status(500).json({ error: 'Could not retrieve chapter' })
@@ -32,7 +32,7 @@ class ChapterController {
       const chapters = await chapterService.getAllChapters(bookId)
       res.status(201).json(chapters)
     } catch (error) {
-      res.status(500).json({ error: 'Could not retrieve chapters' })
+      res.status(500).json({ error: 'Could not retrieve chapters' })   
     }
   }
 
