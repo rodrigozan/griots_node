@@ -3,12 +3,17 @@ import Chapter from '../models/chapters.models';
 class ChapterService {
   async createChapter(data) {
     try {
+      const existingChapter = await Chapter.findOne({ slug: data.slug });
+      if (existingChapter) {
+        throw new Error('Já existe um capítulo com este slug.');
+      }
       const new_chapter = new Chapter(data);
-      console.log("chegou aqui")
+      console.log("chegou aqui", new_chapter)
       const chapter = await new_chapter.save();
+      console.log('será que chegou aqui???')
       return chapter;
     } catch (error) {
-      console.log("Não deu para cadastrar o capítulo no controller: ", error.message)
+      throw error
     }
   }
 
@@ -27,7 +32,7 @@ class ChapterService {
       const chapters = await Chapter.find({ book: bookId })
       return chapters;
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message) 
       throw error.message
     }
   }

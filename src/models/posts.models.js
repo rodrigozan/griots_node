@@ -5,9 +5,13 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  username: {
-    type: String,
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
     required: true,
+  },
+  likes: {
+    type: Number
   },
   createdAt: {
     type: Date,
@@ -15,6 +19,6 @@ const postSchema = new mongoose.Schema({
   },
 });
 
-const Post = mongoose.model('Post', postSchema);
+const Post = mongoose.model('Post', postSchema)
 
 export default Post;
