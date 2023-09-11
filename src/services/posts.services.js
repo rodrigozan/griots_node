@@ -1,3 +1,4 @@
+import { io } from '../../utils/socket.io.js'
 import Post from '../models/posts.models.js';
 
 const postsServices = {
@@ -5,7 +6,9 @@ const postsServices = {
   createPost: async (postData) => {
     try {
       const post = new Post(postData);
-      return await post.save();
+      await post.save();
+      io.emit('post message', post);
+      return post
     } catch (error) {
       throw error;
     }

@@ -1,0 +1,9 @@
+[Unit]
+Description=Monitor Pull Requests
+
+[Service]
+ExecStart=/scripts/pull-request-autorun.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

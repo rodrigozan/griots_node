@@ -19,6 +19,7 @@ import characterController from './controllers/planning/character.controllers'
 import postController from './controllers/posts.controllers'
 
 import notificationsControllers from './controllers/notifications.controllers'
+import chatsControllers from './controllers/chats.controllers'
 
 const router = express.Router()
 
@@ -97,5 +98,8 @@ router.put('/posts/:id', authMiddleware, postController.updatePost)
 
 // Notifications
 router.post('/notifications', authMiddleware, notificationsControllers.createNotification)
+
+// Chats
+router.post('/send-message', authMiddleware, chatsControllers.sendMessage);
 
 export default router  

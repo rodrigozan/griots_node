@@ -27,7 +27,7 @@ const postController = {
   getPostById: async (req, res) => {
     try {
       const { id } = req.params;
-      const post = await service.getPostById(id);
+      const post = await postService.getPostById(id);
       res.status(200).json(post);
     } catch (error) {
       console.error('Erro ao obter usuário por ID:', error);

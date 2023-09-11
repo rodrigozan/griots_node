@@ -1,0 +1,15 @@
+name: Create PULL_REQUEST_PENDING file
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  create_pending_file:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Create PULL_REQUEST_PENDING file
+      run: echo "This is a pending pull request." > PULL_REQUEST_PENDING
