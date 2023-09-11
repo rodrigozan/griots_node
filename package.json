@@ -9,7 +9,7 @@
     "dev": "NODE_ENV=development nodemon --exec babel-node server.js",
     "test_user": "bash scripts/test_user.sh",
     "add": "git add .",
-    "commit": "git commit -m 'Created enable_services script'",
+    "commit": "git commit -m 'Updated pull-request-autorun.sh and pull-request-monitor.service'",
     "push": "npm run add && npm run commit && git push origin master",
     "copy_service_file": "node copy-service-file.js",
     "enable_services":"chmod +x /etc/systemd/system/pull-request-monitor.service && chmod +x /etc/systemd/system/start-app.service",

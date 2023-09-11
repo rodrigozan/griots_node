@@ -2,7 +2,7 @@
 Description=Monitor Pull Requests
 
 [Service]
-ExecStart=/scripts/pull-request-autorun.sh
+ExecStart=/www/app/scripts/pull-request-autorun.sh
 Restart=always
 
 [Install]

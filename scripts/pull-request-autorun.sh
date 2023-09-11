@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define o diretório do repositório a ser monitorado
-REPO_DIR="/www/griots_node/"
+REPO_DIR="/app/www/"
 
 # Função para executar um pull request
 execute_pull_request() {
