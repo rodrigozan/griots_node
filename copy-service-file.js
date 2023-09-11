@@ -3,16 +3,25 @@ const path = require('path');
 const { promisify } = require('util');
 
 const copyFile = promisify(fs.copyFile);
+const renameFile = promisify(fs.rename);
 
-const sourceFile = path.join(__dirname, 'scripts', 'pull-request-monitor.service');
-const destinationFile = '/etc/systemd/system/pull-request-monitor.service';
+const sourceServiceFile = path.join(__dirname, 'scripts', 'pull-request-monitor.service');
+const destinationServiceFile = '/etc/systemd/system/pull-request-monitor.service';
+
+const sourceAppServiceFile = path.join(__dirname, 'scripts', 'start-app.service');
+const destinationAppServiceFile = '/etc/systemd/system/start-app.service';
 
 async function main() {
   try {
-    await copyFile(sourceFile, destinationFile);
-    console.log(`Service file copied to ${destinationFile}`);
+    // Copiar o arquivo pull-request-monitor.service
+    await copyFile(sourceServiceFile, destinationServiceFile);
+    console.log(`pull-request-monitor.service copied to ${destinationServiceFile}`);
+
+    // Mover o arquivo start-app.service
+    await renameFile(sourceAppServiceFile, destinationAppServiceFile);
+    console.log(`start-app.service moved to ${destinationAppServiceFile}`);
   } catch (error) {
-    console.error('Error copying service file:', error);
+    console.error('Error copying or moving service files:', error);
   }
 }
 
