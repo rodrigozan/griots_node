@@ -9,10 +9,11 @@
     "dev": "NODE_ENV=development nodemon --exec babel-node server.js",
     "test_user": "bash scripts/test_user.sh",
     "add": "git add .",
-    "commit": "git commit -m 'Updated post and chats CRUD, socket.io service and pull request service'",
+    "commit": "git commit -m 'Updated package.json with start service configuration'",
     "push": "npm run add && npm run commit && git push origin master",
     "copy_service_file": "node copy-service-file.js",
-    "start_service_file":"sudo systemctl daemon-reload && sudo systemctl start pull-request-monitor && sudo systemctl enable pull-request-monitor"
+    "start_service_file":"sudo systemctl daemon-reload && sudo systemctl start pull-request-monitor && sudo systemctl enable pull-request-monitor",
+    "start_app_file":"sudo systemctl daemon-reload && sudo systemctl start start-app && sudo systemctl enable start-app"
   },
   "keywords": [],
   "author": "",

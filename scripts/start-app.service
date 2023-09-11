@@ -1,0 +1,13 @@
+[Unit]
+Description=Start Griots API in Ubuntu 
+
+[Service]
+WorkingDirectory=/app/www/package.json
+ExecStart=/app/www/node_modules/.bin/yarn start
+Restart=always
+User=root
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
